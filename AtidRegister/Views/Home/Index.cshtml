@@ -1,0 +1,129 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "בחירה";
+    ViewData["UserName"] = User.Identity.Name;
+    var splittedPriorities = Model.Priorities.Split("$");
+}
+@(await Html.PartialAsync("_StudentNav"))
+<span class="mt-5">&nbsp;</span>
+<span class="mt-5">&nbsp;</span>
+@* Tabs Nav *@
+<nav class="">
+</nav>
+<form asp-action="Index" class="mt-5">
+    <div class="container">
+        <div class="text-center">
+
+            <div class="nav nav-tabs nav-fill" id="reg-tab" role="tablist">
+                @for (int i = 0; i < Model.TimeStrips.Count; i++)
+                {
+                    var ts = Model.TimeStrips[i];
+                    <a class="nav-item nav-link @(i==0?"active":"")" id="reg-@i-tab" data-toggle="tab" href="#reg-@i" role="tab" aria-controls="reg-@i" aria-selected="true">
+                        <p class="timestrip-nicename">
+                            קבוצה @(i + 1)
+                        </p>
+                        <p class="timestrip-time">
+                            @ts.StartTime.ToString(@"h\:mm")-@ts.EndTime.ToString(@"h\:mm")
+                        </p>
+                    </a>
+                }
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger text-left big-validation"></div>
+
+            @* Contents *@
+            <input type="hidden" asp-for="Priorities" id="priorities" />
+            <div class="tab-content px-3 py-2 px-sm-0" id="reg-tabContent">
+                @for (int i = 0; i < Model.TimeStrips.Count; i++)
+                {
+                    var ts = Model.TimeStrips[i];
+                    var tsContents = Model.Contents.Where(c => c.Content.TimeStripId == ts.Id).ToList();
+                    <div class="tab-pane fade @(i==0?"show active":"")" id="reg-@i" role="tabpanel" aria-labelledby="reg-@i">
+                        <div class="d-flex align-items-stretch mt-3 mb-3 mr-1 ml-1">
+                            <div class="row">
+                                @if (tsContents.Count == 0)
+                                {
+                                    <h6 class="font-weight-bold text-muted">בקרוב...</h6>
+                                }
+                                @for (int j = 0; j < tsContents.Count; j++)
+                                {
+                                    var content = tsContents[j];
+                                    var indexInFullList = Model.Contents.IndexOf(content);
+                                    var contentPriorities = splittedPriorities[i].Split('.').ToList();
+                                    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+                                        <input type="hidden" asp-for="Contents[indexInFullList].Content.Id" />
+                                        <input type="hidden" asp-for="Contents[indexInFullList].Content.TimeStripId" />
+                                        <input asp-for="Contents[indexInFullList].isChecked" class="reg-chkbx-input" data-type-offset="@i" data-content-id="@content.Content.Id" />
+                                        <label class="card" asp-for="Contents[indexInFullList].isChecked">
+                                            <!-- Card Content Here -->
+                                            <div class="card-body">
+                                                <h4 class="card-title">@content.Content.Title</h4>
+                                                <div>
+                                                    @if (content.Content.ContentPeople.Count == 1)
+                                                    {
+                                                        <img class="float-left" src="data:@content.Content.ContentPeople[0].Person.ImageFile" width="75" />
+                                                        <p class="text-muted font-weight-bold">@content.Content.ContentPeople[0].Person.FullName</p>
+                                                    }
+                                                    else if (content.Content.ContentPeople.Count > 1)
+                                                    {
+                                                        <a class="text-muted font-weight-bold link-moreinfo" data-toggle="modal" data-target="#content-@content.Content.Id-people-modal">
+                                                            מידע על המנחים
+                                                        </a>
+                                                    }
+                                                    <span class="badge badge-primary">@content.Content.Type.Name</span>
+                                                    <p class="card-text">@content.Content.Description</p>
+                                                </div>
+                                            </div>
+                                            @{ 
+                                                int indxOfContent = contentPriorities.IndexOf(content.Content.Id.ToString());
+                                            }
+                                            <h6 class="priority-rate indication">@(indxOfContent > -1 ? "עדיפות: " + (indxOfContent + 1) : "לחצו עליי כדי להוסיף")</h6>
+                                        </label>
+                                    </div>
+                                    @if (content.Content.ContentPeople.Count > 1)
+                                    {
+                                        <div class="modal fade" id="content-@content.Content.Id-people-modal" tabindex="-1" role="dialog" aria-labelledby="#content-@content.Content.Id-people-modal-label" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="content-@content.Content.Id-people-modal-label">מנחים - @content.Content.Title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            @foreach (var person in content.Content.ContentPeople)
+                                                            {
+                                                                <div class="card col-11 col-md-6 col-lg-4">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">@person.Person.FullName</h5>
+                                                                        <p class="card-text">@person.Person.JobTitle</p>
+                                                                    </div>
+                                                                    <img src="data:@person.Person.ImageFile" class="card-img-top" alt="@person.Person.FullName">
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">סגירה</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger text-left big-validation"></div>
+            <input type="submit" class="student-login-btn d-none d-lg-inline-flex btn-lg" value="שמירה" />
+            <div class="fixed-bottom send-button-fixed-bottom d-lg-none">
+                <input type="submit" value="שמירה" class="pr-5 pl-5 student-login-btn" />
+            </div>
+        </div>
+    </div>
+</form>
+

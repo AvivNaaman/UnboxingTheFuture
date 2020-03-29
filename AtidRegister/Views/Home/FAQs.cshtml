@@ -1,0 +1,31 @@
+﻿@model List<AtidRegister.Models.FAQuestion>
+@{
+    ViewData["Title"] = "שאלות נפוצות";
+}
+<partial name="_StudentNav" />
+<span class="mt-5">&nbsp;</span> <!--קומבינה!-->
+<div class="container mt-5">
+    <h1>שאלות נפוצות</h1>
+    <div class="accordion" id="accordionFAQ">
+        @{bool isFirst = true;}
+        @foreach (var q in Model)
+        {
+            <div class="card">
+                <div class="card-header" id="heading-@q.Id">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-@q.Id" aria-expanded="true" aria-controls="collapse-@q.Id">
+                            @q.Question
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapse-@q.Id" class="collapse @(isFirst?"show":"")" aria-labelledby="heading-@q.Id" data-parent="#accordionFAQ">
+                    <div class="card-body">
+                        @q.Answer
+                    </div>
+                </div>
+            </div>
+            isFirst = false;
+        }
+    </div>
+</div>

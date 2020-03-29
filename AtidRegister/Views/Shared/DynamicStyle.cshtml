@@ -1,0 +1,13 @@
+﻿@using Microsoft.Extensions.Options;
+@using AtidRegister.Configuration;
+@inject IOptions<AppConfig> options
+@* Dynamic CSS *@
+<style>
+    body {
+        background: url('@options.Value.BackgroundImageURL') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        color:white;
+    }
+</style>

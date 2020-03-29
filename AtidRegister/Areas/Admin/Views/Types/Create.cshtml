@@ -1,0 +1,31 @@
+﻿@model AtidRegister.Areas.Admin.Models.TypeViewModel
+
+@{
+    ViewData["Title"] = "CreateType";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>CreateType</h1>
+
+<h4>TypeViewModel</h4>
+<hr />
+<div class="row">
+    <div class="">
+        <form asp-action="CreateType">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" autocomplete="off"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

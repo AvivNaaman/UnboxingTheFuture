@@ -1,0 +1,106 @@
+﻿@model AtidRegister.Areas.Admin.Models.CreateContentViewModel
+
+@{
+    ViewData["Title"] = "יצירת הרצאה";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>צור הרצאה</h1>
+
+<hr />
+<div class="">
+    <div class="">
+        <form asp-action="Create"  enctype="multipart/form-data" class="">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-6 col-sm-4 col-md-3">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" autocomplete="off" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-11 col-sm-7 col-md-5">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" autocomplete="off"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label"></label>
+                <select asp-for="TypeId" asp-items="@(new SelectList(Model.Types, "Id", "Name", 0))"></select>
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="People" class="control-label"></label>
+                <span asp-validation-for="People" class="text-danger"></span>
+                <div class="">
+
+                    @{ var itemCount = 0;}
+                    @for (int i = 0; i < Model.People.Count; i++)
+                    {
+                        if (itemCount == 0)
+                        {
+                            @:<div class="row">
+                            }
+                            <div class="col-10 col-sm-5 col-lg-3 mb-2">
+                                <input type="checkbox" asp-for="People[i].isChecked" />
+                                <input type="hidden" asp-for="People[i].Person.Id" />
+                                <img src="data:@Model.People[i].Person.ImageFile" height="50" />
+                                <span>@Model.People[i].Person.FullName</span>
+                            </div>
+                            if (itemCount == 3)
+                            {
+                                itemCount = 0;
+                            @:</div>
+                        }
+                        else
+                        {
+                            itemCount++;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="TimeStripId" class="control-label"></label>
+                <span asp-validation-for="TimeStripId" class="text-danger"></span>
+                <div class="">
+                    @{ itemCount = 0;}
+                    @for (int i = 0; i < Model.TimeStrips.Count; i++)
+                    {
+                        if (itemCount == 0)
+                        {
+                            @:<div class="row">
+                            }
+                            <div>
+                                <input asp-for="TimeStripId" type="radio" value="@Model.TimeStrips[i].Id" /> @Model.TimeStrips[i].StartTime.ToString()
+                            </div>
+                            if (itemCount == 3)
+                            {
+                                itemCount = 0;
+                            @:</div>
+                        }
+                        else
+                        {
+                            itemCount++;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="form-group  col-11 col-sm-7 col-md-5 mt-2 mb-2">
+                <div class="custom-file">
+                    <label asp-for="Image" class="custom-file-label" for="uploadImage"></label>
+                    <input asp-for="Image" class="custom-file" id="uploadImage" />
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts{ 
+@await Html.PartialAsync("_ValidationScriptsPartial")
+}

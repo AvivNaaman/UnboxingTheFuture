@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AtidRegister.Models.TimeStrip>
+
+@{
+    ViewData["Title"] = "רצועות זמן";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+    <div class="container">
+        <h1>רצועות זמן</h1>
+
+        <p>
+            <a asp-action="Create">הוספה</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndTime)
+                        </td>
+                        <td>
+                            @Html.ActionLink("עריכה", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("פרטים", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("מחיקה", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

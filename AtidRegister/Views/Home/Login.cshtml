@@ -1,0 +1,37 @@
+﻿@model AtidRegister.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "ברוכים הבאים";
+}
+<partial name="_StudentNav" />
+    <div class="container student-login-main-ctr">
+        <div class="d-flex justify-content-center">
+            <div class="col-lg-5 col-md-8 col-sm-10 col-12 student-login-main p-4 text-center align-self-center">
+                <h1>ברוכים הבאים</h1>
+                <h5>פה נרשמים להרצאות ופעילויות</h5>
+                <hr />
+                <form asp-action="Login">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <select class="custom-select" asp-items="@(new SelectList(Model.Classes.OrderByDescending(c => c.Id),"Id", "ClassName"))" id="selectClass"><option disabled selected value="">אני בשכבה</option></select>
+                        </div>
+                        <div class="col-6 form-group" id="gradeSelectGroup">
+                            <select class="custom-select" id="selectGrade"><option value="" selected disabled>אני בכיתה</option></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-12 form-group" style="" id="studentSelectGroup">
+                            <select class="custom-select" id="selectStudent" asp-for="UserId"><option value="" selected disabled>השם שלי</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="התחבר" class="pr-5 pl-5 student-login-btn" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+}

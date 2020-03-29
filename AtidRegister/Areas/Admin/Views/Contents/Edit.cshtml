@@ -1,0 +1,103 @@
+﻿@model AtidRegister.Areas.Admin.Models.EditContentViewModel
+
+@{
+    ViewData["Title"] = "עריכה";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>עריכת מנחה\מרצה</h1>
+
+<hr />
+<div class="">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OldImageName" class="control-label"></label>
+                <img height="100" src="data:@Model.OldImageName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NewImage" class="control-label"></label>
+                <input asp-for="NewImage" class="form-control" />
+                <span asp-validation-for="NewImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="People" class="control-label"></label>
+                <span asp-validation-for="People" class="text-danger"></span>
+                <div class="">
+
+                    @{ var itemCount = 0;}
+                    @for (int i = 0; i < Model.People.Count; i++)
+                    {
+                        if (itemCount == 0)
+                        {
+                            @:<div class="row">
+                            }
+                            <div class="col-10 col-sm-5 col-lg-3 mb-2">
+                                <input type="checkbox" asp-for="People[i].isChecked" />
+                                <input type="hidden" asp-for="People[i].Person.Id" />
+                                <img src="data:@Model.People[i].Person.ImageFile" height="50" />
+                                <span>@Model.People[i].Person.FullName</span>
+                            </div>
+                            if (itemCount == 3)
+                            {
+                                itemCount = 0;
+                            @:</div>
+                        }
+                        else
+                        {
+                            itemCount++;
+                        }
+                    }
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="TimeStripId" class="control-label"></label>
+                    <span asp-validation-for="TimeStripId" class="text-danger"></span>
+                    <div class="">
+                        @{ itemCount = 0;}
+                        @for (int i = 0; i < Model.TimeStrips.Count; i++)
+                        {
+                            if (itemCount == 0)
+                            {
+                                @:<div class="row">
+                                }
+                                <div>
+                                    <input asp-for="TimeStripId" type="radio" value="@Model.TimeStrips[i].Id" /> @Model.TimeStrips[i].StartTime.ToString()
+                                </div>
+                                if (itemCount == 3)
+                                {
+                                    itemCount = 0;
+                                @:</div>
+                            }
+                            else
+                            {
+                                itemCount++;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="שמירה" class="btn btn-outline-light" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">חזרה לרשימה</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

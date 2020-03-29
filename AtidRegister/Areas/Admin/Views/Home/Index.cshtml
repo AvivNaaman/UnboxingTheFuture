@@ -1,0 +1,151 @@
+﻿@model AdminIndexViewModel
+@{
+    ViewData["Title"] = "ניהול";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>ניהול</h1>
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-4">
+        <canvas id="adminRegUsersChart" height="400" width="400"></canvas>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4">
+        <canvas id="contentBars" height="400" width="400"></canvas>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4">
+        <canvas id="hasPhoneChart" height="400" width="400"></canvas>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        /* Registered Precentage Chart */
+    var regPrecentage = document.getElementById("adminRegUsersChart");
+        var data = {
+            datasets: [
+                {
+                    data: [@Model.UnregisteredUsers,@Model.UsersRegistered],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.9)',
+                        'rgba(39, 196, 81, 0.9)'
+                    ],
+                    borderColor: [
+                        'rgba(0,0,0,0)',
+                        'rgba(0,0,0,0)'
+                    ],
+                }],
+            labels: ["לא נרשמו", "נרשמו"]
+        };
+        var regChar = new Chart(regPrecentage, {
+            type: 'pie',
+            data: data,
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: "easeOutCubic"
+                }
+            }
+        });
+        /* Registered by content chart */
+        var contentBars = document.querySelector("#contentBars");
+        const colors = [
+                    @for (int i = 0; i < Model.ContentsWithRegCounts.Count; i++)
+                            {
+                                switch (i % 3)
+                                {
+                                    case 0:
+                                @Html.Raw(
+                            "'rgba(255, 99, 132, 1)',")
+                                break;
+                            case 1:
+                                @Html.Raw(
+                            "'rgba(54, 162, 235, 1)',")
+                                break;
+                                case 2:
+                                default:
+                                @Html.Raw(
+                            "'rgba(255, 206, 86, 1)',")
+                                break;
+                            }
+                        }
+                ]
+        data = {
+            datasets: [{
+                data: [@String.Join(",",Model.ContentsWithRegCounts.Select(c => c.Item2).ToArray())],
+                backgroundColor: colors,
+                borderColor:colors,
+                borderWidth: 1,
+                label: "נרשמים"
+            }],
+            labels: ["@Html.Raw(String.Join("\",\"",Model.ContentsWithRegCounts.Select(c => c.Item1.Title.Length <= 12 ? c.Item1.Title:c.Item1.Title.Substring(0, 12) + "...").ToArray()))"]
+        }
+        var contentChart = new Chart(contentBars, {
+            type: 'bar',
+            data: data,
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 14
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 12,
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 12,
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        /* Has Phone Number chart */
+        var regPrecentage = document.querySelector("#hasPhoneChart");
+        var data = {
+            datasets: [
+                {
+                    data: [@(Model.UsersRegistered-Model.HasPhoneNumber),@Model.HasPhoneNumber],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.9)',
+                        'rgba(39, 196, 81, 0.9)'
+                    ],
+                    borderColor: [
+                        'rgba(0,0,0,0)',
+                        'rgba(0,0,0,0)'
+                    ],
+                }],
+            labels: ["חסרי מספר", "הוסיפו מספר"]
+        };
+        var regChar = new Chart(regPrecentage, {
+            type: 'pie',
+            data: data,
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: "easeOutCubic"
+                }
+            }
+        });
+    </script>
+}
+

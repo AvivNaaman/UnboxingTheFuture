@@ -1,0 +1,45 @@
+﻿@model AtidRegister.Models.Content
+
+@{
+    ViewData["Title"] = "מחק תוכן - "+Model.Title;
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>מחק תוכן</h1>
+
+<h3>רגע! אתה בטוח שאתה רוצה למחוק את זה?</h3>
+<div>
+    <h4>תוכן</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageFile)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/DynamicContent/Images/@Model.ImageFile" height="250"/>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@Model.Id"/> |
+        <a asp-action="Index">חזרה לרשימה</a>
+    </form>
+</div>

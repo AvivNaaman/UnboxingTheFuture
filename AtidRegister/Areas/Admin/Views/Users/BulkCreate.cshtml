@@ -1,0 +1,41 @@
+﻿@model AtidRegister.Areas.Admin.Models.BulkCreateUsersViewModel
+@{
+    ViewData["Title"] = "יצירת משתמשים מסיבית";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<h1>הוספת משתמשים מסיבית</h1>
+<h5>שים לב! הוספת משתמשים מסיבית נעשית באמצעות העלאת קובץ ייחודי עם הנתונים. עליכם להוריד את הקובץ, להזין את הנתונים ולהעלותו.</h5>
+
+<h6><a href="~/docs/csv_bulk_template.csv" download>הורדת הקובץ</a></h6>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="BulkCreate" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="csvFile"></label>
+                <input asp-for="csvFile" class="form-control" />
+                <span class="text-danger" asp-validation-for="csvFile"></span>
+            </div>
+            <div>
+                <div class="form-group">
+                    <select class="custom-select" asp-items="@(new SelectList(Model.Classes.OrderByDescending(c => c.Id),"Id", "ClassName"))" id="selectClass"><option disabled selected value="">בחר שכבה</option></select>
+                </div>
+                <div class="form-group col-6" style="visibility: hidden !important" id="gradeSelectGroup">
+                    <select asp-for="GradeId" class="custom-select" id="selectGrade"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+}
+

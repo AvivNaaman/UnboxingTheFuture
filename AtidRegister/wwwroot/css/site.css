@@ -1,0 +1,341 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+hr {
+    border-color: white;
+} 
+/* Provide sufficient contrast against white background */
+a, a:hover {
+    color: white !important;
+    text-decoration: underline;
+}
+
+    a.navbar-brand {
+        color: black !important;
+    }
+
+    a.nav-link {
+        color: black !important;
+    }
+
+        a.nav-link.nav-item p {
+            color: white !important;
+        }
+
+    a.nav-link, a.navbar-brand {
+        text-decoration: none;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    padding-bottom: 3.5rem;
+    overflow-y: scroll;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 40px; /* Vertically center the text there */
+    background: rgba(0, 0, 0, 0.30);
+    color: white;
+}
+
+    .footer > div > a {
+        color: white;
+        text-decoration: none !important;
+    }
+
+.card {
+    color: black;
+}
+
+.admin-navbar {
+    background: rgba(255, 255, 255, 0.65) !important;
+    background-color: transparent;
+    border-bottom: none !important;
+}
+
+.admin-navbar-logout {
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.big-validation {
+    font-size: 135%;
+    font-weight: bold;
+}
+
+    .big-validation > ul {
+        list-style-type: none;
+    }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    transition: all 1s ease-in-out;
+}
+/*
+*:hover::-webkit-scrollbar {
+    width: 14px !important;
+}*/
+
+/* Track */
+::-webkit-scrollbar-track {
+    transition: width 1s ease-in-out;
+    background: #CFD8DC;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    border: 2px solid #CFD8DC;
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        width: 125%;
+    }
+/*
+#stu-collapse-button[aria-expanded="true"] + #students-accordion-collapse-image {
+    transition: 3s;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+}*/
+a.btn {
+    text-decoration: none;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+/* Register CheckBoxes */
+.reg-chkbx-input + label, .reg-chkbx-input + label * {
+    transition: all ease-in-out .3s;
+}
+
+.reg-chkbx-input:checked + label.card h6.indication {
+    background-color: red !important;
+}
+
+.reg-chkbx-input:checked + label.card /*.reg-chkbx-marker*/ {
+    transform: scale(0.97);
+    transform-origin: center;
+    box-shadow: white 0 0 10px;
+    /*
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(94, 26, 181, 0.90);
+    border-radius: 7px;
+    */
+}
+
+.reg-chkbx-input + label.card {
+    padding-bottom: 0;
+}
+
+    .reg-chkbx-input + label.card h6.indication {
+        margin-bottom: 0;
+        padding: 5px 0 5px 0;
+    }
+
+.reg-chkbx-input {
+    visibility: hidden;
+}
+
+.student-login-main {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.student-login-btn {
+    background-color: #33b1db;
+    color: rgb(21, 34, 142);
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .5s
+}
+
+    .student-login-btn:hover {
+        background-color: rgb(26,113,219);
+        color: rgb(17, 28, 116);
+    }
+
+.student-login-main-ctr {
+    margin-top: 8rem;
+}
+
+.student-nav {
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, #00bfff 0%, rgba(9,9,121,1) 60%, #080342 100%);
+    box-shadow: #ffffff 0 0 20px 0;
+}
+
+.student-nav-item {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    border-right: 2px dotted white;
+}
+
+.navbar span {
+    cursor: context-menu !important;
+}
+
+.student-navbar-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.nav-tabs a:hover, .nav-tabs a {
+    color: white;
+}
+
+
+    .nav-tabs a.active {
+        background-color: rgba(0,0,0,0) !important;
+        border-bottom: none !important;
+        color: white !important;
+        font-weight: bold;
+    }
+
+    .nav-tabs a:not(.active) {
+        background-color: rgba(0,0,0,0) !important;
+        border-bottom: 1px solid white;
+    }
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+    .nav-tabs p {
+        margin: 0;
+    }
+
+p.timestrip-time {
+    font-weight: normal;
+}
+
+.tab-content {
+    color: white;
+}
+
+.footer-link, .footer-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.text-muted {
+    color: #acb2b8 !important;
+}
+
+.text-decoration-underline {
+    text-decoration: underline !important;
+}
+
+.link-moreinf:only-child:hover {
+    color: black !important;
+}
+
+.modal-title {
+    color: black;
+}
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.reg-tab-content {
+    margin-top: 8rem;
+}
+
+.navbar-collapse-button-img:hover {
+    cursor: pointer;
+}
+.send-button-fixed-bottom {
+    padding: 0.45rem;
+    background-color: rgba(0,0,0,.7);
+    z-index: 1029 !important;
+    transition: background-color ease-in-out 0.5s;
+}

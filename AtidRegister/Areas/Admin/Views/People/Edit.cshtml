@@ -1,0 +1,46 @@
+﻿@model AtidRegister.Areas.Admin.Models.EditPersonViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>EditPersonViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobTitle" class="control-label"></label>
+                <input asp-for="JobTitle" class="form-control" />
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OldImageFile" class="control-label"></label>
+                <img height="100" src="data:@Model.OldImageFile" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonImage" class="control-label"></label>
+                <input asp-for="PersonImage" class="form-control" />
+                <span asp-validation-for="PersonImage" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,75 @@
+﻿@model UsersIndexViewModel
+@{ 
+    ViewData["Title"] = "ניהול משתמשים";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<h1>ניהול משתמשים</h1>
+<a asp-action="BulkCreate">הוספה מסיבית</a>
+<a asp-action="Create">הוספה ידנית</a>
+<div class="accordion" id="adminUsersAc">
+    <div class="card">
+        <div class="card-header" id="headingStudents">
+            <h2 class="mb-0">
+                <button class="btn btn-link" id="stu-collapse-button" type="button" data-toggle="collapse" data-target="#collapseStudents" aria-expanded="true" aria-controls="collapseStudents">
+                    <img id="students-accordion-collapse-image" src="~/Images/down-arrow-icons8.png" height="30" />
+                    תלמידים
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div id="collapseStudents" class="collapse" aria-labelledby="headingStudents" data-parent="#adminUsersAc">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">שם</th>
+                        <th scope="col">כיתה</th>
+                        <th scope="col">האם בחר</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Students.OrderBy(s => s.DidChose))
+                    {
+                        <tr>
+                            <th>@user.UserName</th>
+                            <th>@user.Grade</th>
+                            <th>@user.DidChose</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Admins-->
+    <div class="card">
+        <div class="card-header" id="headingAdmins">
+            <h2 class="mb-0">
+                <button class="btn btn-link" id="admin-collapse-button" type="button" data-toggle="collapse" data-target="#collapseAdmins" aria-expanded="true" aria-controls="collapseAdmins">
+                    <img id="admins-accordion-collapse-image" src="~/Images/down-arrow-icons8.png" height="30" />
+                    מנהלים
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div id="collapseAdmins" class="collapse" aria-labelledby="headingAdmins" data-parent="#adminUsersAc">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">שם</th>
+                        <th scope="col">מייל</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Admins)
+                    {
+                        <tr>
+                            <th scope="row">@user.UserName</th>
+                            <th>@user.Email</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

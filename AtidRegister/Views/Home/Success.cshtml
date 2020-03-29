@@ -1,0 +1,58 @@
+﻿@model List<TimeStrip>
+@{
+    ViewData["Title"] = "נרשמת!";
+}
+
+<partial name="_StudentNav" />
+<div class="container mt-5 pt-4 text-center">
+    <h1>נרשמת!</h1>
+    <div class="d-sm-none d-block">
+        @{
+            /* Build Whatsapp Text */
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (var m in Model)
+            {
+                sb.Append(sb.Length > 0 ? "%0A" : "");
+                sb.Append("בשעה ");
+                sb.Append(m.StartTime.ToString(@"h\:mm"));
+                sb.Append(" בחרתי: ");
+                bool isBeginning = true;
+                foreach (var content in m.Contents)
+                {
+                    sb.Append(!isBeginning ? ", " : "");
+                    sb.Append(content.Title);
+                    isBeginning = false;
+                }
+            }
+            sb.Insert(0, "נרשמתי לכנס עתידנות! בחרתי ב:%0A");
+        }
+        <a href="whatsapp://send?text=@sb.ToString()" data-action="share/whatsapp/share">
+            <img src="~/images/whatsapp-icons8.png" height="30" />
+        </a>
+    </div>
+    <h3>בחרת להשתתף ב:</h3>
+    @foreach (var ts in Model)
+        {
+    <h3>@ts.StartTime.ToString(@"h\:mm")</h3>
+    <div class="row">
+        @foreach (var item in ts.Contents)
+                    {
+
+
+        <div class="col-11 col-sm-5 col-lg-4 mb-4 d-inline-flex">
+            <div class="card h-100" style="">
+                <div class="card-body">
+                    <div>
+                        @{ /*/ TODO: Multiple Images => Modal */ }
+                        <img src="data:@item.ContentPeople[0].Person.ImageFile" height="100" class="float-right m-1" />
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                }
+    </div>
+        <hr />
+        }
+</div>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Unboxing The Future</title>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130632144-4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-130632144-4');
+        </script>
+    </environment>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <partial name="DynamicStyle" />
+</head>
+<body>
+    <div id="top"></div>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="mr-3 ml-3" dir="ltr">
+            <div class="d-flex justify-content-between bd-highlight">
+                <div class="p-2 bd-highlight"><a class="footer-link text-center" href="https://github.com/avivnaaman" target="_blank">@("")Aviv Naaman</a></div>
+                <div class="p-2 bd-highlight">Unboxing The Future - 2020 &copy;</div>
+                <div class="p-2 bd-highlight d-none d-sm-block"><a onclick="$('html, body').animate({scrollTop:0}, '300');" style="cursor: pointer; float: left;">חזרה למעלה</a></div>
+            </div>
+        </div>
+    </footer>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@model List<Content>
+@{
+    ViewData["Title"] = "תכנים";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>תכנים</h1>
+<a asp-action="Create">הוסף תוכן</a>&nbsp;<a asp-action="Types">קטגוריות</a>
+<ul class="list-group">
+    @foreach (var content in Model)
+    {
+        <li class="list-group-item">@content.Title</li>
+    }
+</ul>

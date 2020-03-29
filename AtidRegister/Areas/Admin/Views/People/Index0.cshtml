@@ -1,0 +1,17 @@
+﻿@model List<Person>
+@{
+    ViewData["Title"] = "מנחים ומרצים";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>מנחים ומרצים</h1>
+<ul class="list-group">
+	@foreach (var person in Model)
+	{
+		 <li class="list-group-item d-inline-block">
+			 <img src="~/DynamicContent/Images/@person.ImageFile" height="50"/><a asp-action="Details" asp-route-id="@person.Id" class="m-2">@person.FullName</a>
+			 <span class="float-right"><a asp-action="Edit" asp-route-id="@person.Id">עריכה</a></span>
+	</li>
+	}
+</ul>
+<a asp-action="Create">הוספה</a>

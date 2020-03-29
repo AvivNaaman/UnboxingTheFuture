@@ -1,0 +1,19 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "שגיאה!";
+}
+
+<h1 class="text-danger">מצטערים, אבל חלה שגיאה</h1>
+<h2 class="text-danger">עמלנו רבות על מנת שזה לא יקרה, ואנו מודעים לשגיאה ונטפל בה בהקדם</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>מזהה הבקשה:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>מפתח?</h3>
+<p>
+    עבור לסביבת <strong>Development</strong> ותוכל לקבל מידע מעמיק יותר אודות השגיאה
+</p>

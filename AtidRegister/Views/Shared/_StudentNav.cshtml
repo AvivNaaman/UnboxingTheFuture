@@ -1,0 +1,35 @@
+﻿@* Students navbar partial view *@
+<nav class="navbar navbar-dark student-nav navbar-expand-md student-navbar-content fixed-top">
+    <div class="container">
+        <span class="navbar-brand">
+            <img src="~/favicon.jpg" height="35" width="35" alt="Unboxing The Future" class="d-inline-block align-top" />
+            <span class="align-bottom">Unboxing The Future</span>
+        </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""><img src="~/Images/squared-menu-icons8.png" height="25" class="navbar-collapse-button-img"/></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item student-nav-item">
+                    <span>27.2.2020</span>
+                </li>
+                <li class="nav-item student-nav-item">
+                    <span>עוד&nbsp;<span id="countdown"></span>&nbsp;ימים לכנס</span>
+                </li>
+                <li class="nav-item student-nav-item">
+                    @if (ViewContext.RouteData.Values["action"].ToString() != "FAQs")
+                    {
+                        <span><a asp-area="" asp-controller="Home" asp-action="FAQs">עזרה</a></span>
+                    }
+                    else
+                    {
+                        <span><a asp-area="" asp-controller="Home" asp-action="Index">חזרה</a></span>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

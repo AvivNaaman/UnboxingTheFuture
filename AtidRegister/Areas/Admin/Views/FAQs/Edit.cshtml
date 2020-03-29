@@ -1,0 +1,37 @@
+﻿@model AtidRegister.Areas.Admin.Models.EditFAQuestionViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>EditFAQuestionViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Question" class="control-label"></label>
+                <input asp-for="Question" class="form-control" />
+                <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Answer" class="control-label"></label>
+                <textarea asp-for="Answer" class="form-control" ></textarea>
+                <span asp-validation-for="Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

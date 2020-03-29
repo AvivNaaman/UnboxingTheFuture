@@ -1,0 +1,40 @@
+﻿@model AtidRegister.Models.TimeStrip
+
+@{
+    ViewData["Title"] = "מחיקת רצועת זמן";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+    <div class="container">
+        <h1>מחיקת רצועות זמן</h1>
+
+        <h3>אתה בטוח שברצונך למחוק רצועת זמן זו? (שים לב! לא ניתן למחוק מבלי שהרצועה חסרת הרצאות!)</h3>
+        <div>
+            <h4>TimeStrip</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StartTime)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EndTime)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="submit" value="מחיקה" class="btn btn-danger" /> |
+                <a asp-action="Index">חזרה לרשימה</a>
+            </form>
+        </div>
+    </div>

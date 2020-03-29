@@ -1,0 +1,32 @@
+﻿@model AtidRegister.Areas.Admin.Models.AdminLoginViewModel
+
+@{
+    ViewData["Title"] = "התחברות מנהל";
+}
+<div class="container mt-3">
+    <h1>התחברות מנהל</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Login">
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+                <input type="submit" class="btn btn-outline-light" asp-action="Login" asp-controller="Home" asp-area="Admin" value="ניהול"/>
+                <a type="submit" value="" class="btn btn-outline-success" asp-area="" asp-controller="Home" asp-action="Index">בחירת הרצאות</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

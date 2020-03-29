@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Chart.js for admin panels -->
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/chart.js/dist/Chart.min.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    </environment>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 admin-navbar">
+        <div class="container">
+            <a class="navbar-brand" asp-area="Admin" asp-controller="Home" asp-action="Index">ניהול - Unboxing The Future</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-between">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="logout">התנתק</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="admin" asp-controller="Users" asp-action="Index">משתמשים</a>
+                    </li>
+                    <lis class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            תכני הכנס
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Types" asp-action="Index">קטגוריות</a>
+                            <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Time" asp-action="Index">רצועות זמן</a>
+                            <a class="dropdown-item text-dark" asp-area="admin" asp-controller="People" asp-action="Index">מרצים ומנחים</a>
+                            <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Contents" asp-action="Index">תכנים</a>
+                        </div>
+                    </lis>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="admin" asp-controller="FAQs" asp-action="Index">שאלות ותשובות</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="admin" asp-controller="Finalize" asp-action="Index">סיום ההרשמה</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    @RenderBody()
+</div>
+<!-- Chart.js for admin panels -->
+@* Bind Scripts section to _Layout scripts section + add Chart.js *@
+@section Scripts {
+    <environment include="Development">
+        <script src="~/lib/chart.js/dist/Chart.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    </environment>
+    @RenderSection("Scripts", false)
+}

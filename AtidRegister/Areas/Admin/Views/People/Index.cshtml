@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AtidRegister.Models.Person>
+
+@{
+    ViewData["Title"] = "מנחים ומרצים";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>מנחים ומרצים</h1>
+
+<p>
+    <a asp-action="Create">הוספה</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageFile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                <img src="data:@item.ImageFile" height="50" />
+            </td>
+            <td>
+                @Html.ActionLink("עריכה", "Edit", new {  id=item.Id }) |
+                @Html.ActionLink("פרטים", "Details", new {  id=item.Id }) |
+                @Html.ActionLink("מחיקה", "Delete", new {  id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

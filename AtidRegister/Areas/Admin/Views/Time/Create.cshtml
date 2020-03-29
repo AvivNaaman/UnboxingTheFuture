@@ -1,0 +1,49 @@
+﻿@model AtidRegister.Areas.Admin.Models.CreateTimeStripViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>יצירת רצועת זמן</h1>
+
+    <h4>CreateTimeStripViewModel</h4>
+    <hr />
+    <div class="">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="StartMinute" class="control-label"></label>
+                    <input asp-for="StartMinute" class="form-control" />
+                </div>
+                <div class="form-group pr-2 pl-2">
+                    <label class="control-label">&nbsp;</label>
+                    <input asp-for="StartHour" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="StartHour" class="text-danger"></span>
+            <span asp-validation-for="StartMinute" class="text-danger"></span>
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="EndMinute" class="control-label"></label>
+                    <input asp-for="EndMinute" class="form-control" />
+                </div>
+                <div class="form-group pr-2 pl-2">
+                    <label class="control-label">&nbsp;</label>
+                    <input asp-for="EndHour" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="EndHour" class="text-danger"></span>
+            <span asp-validation-for="EndMinute" class="text-danger"></span>
+            <div class="form-group">
+                <input type="submit" value="הוספה" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">חזרה לרשימה</a>
+</div>
+
