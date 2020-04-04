@@ -116,10 +116,30 @@ namespace AtidRegister.Services
         /// <param name="num">the new number, 9-digit</param>
         /// <returns></returns>
         public Task<bool> ChangeStudentPhoneNumberAsync(AppUser student, int num);
+        /// <summary>
+        /// Find student by PK
+        /// </summary>
+        /// <param name="id">the PK</param>
+        /// <returns>the student's user</returns>
         public Task<AppUser> FindByIdAsync(string id);
+        /// <summary>
+        /// Returns all unregistered users as csv formatted string
+        /// </summary>
         public Task<string> GetNotRegisterdAsCsvAsync();
+        /// <summary>
+        /// Returns the contents, tuppeled with it's registration count
+        /// </summary>
+        /// <returns></returns>
         public Task<List<Tuple<Content, int>>> GetContentsWithRegisteredCountAsync();
+        /// <summary>
+        /// returns how much students entered phone number
+        /// </summary>
+        /// <returns></returns>
         public Task<int> HasPhoneNumberCountAsync();
+        /// <summary>
+        /// generated a full report as csv
+        /// </summary>
+        /// <returns></returns>
         public Task<string> GenerateFullReport();
     }
     public class StudentService : IStudentService

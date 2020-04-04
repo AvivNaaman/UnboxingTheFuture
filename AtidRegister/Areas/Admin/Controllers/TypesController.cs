@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtidRegister.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Content Types controller (just basic read/write actions)
+    /// </summary>
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class TypesController : Controller

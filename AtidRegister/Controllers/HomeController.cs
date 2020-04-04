@@ -134,6 +134,9 @@ namespace AtidRegister.Controllers
             return View(model);
         }
         #endregion Register
+        /// <summary>
+        /// Welcome screen (basic instructions)
+        /// </summary>
 
         [HttpGet]
         public async Task<IActionResult> GetStarted()
@@ -261,6 +264,10 @@ namespace AtidRegister.Controllers
             return Json(g);
         }
         #endregion
+        /// <summary>
+        /// Logout
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         public async Task<IActionResult> Logout()
         {

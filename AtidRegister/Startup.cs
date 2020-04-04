@@ -68,8 +68,6 @@ namespace AtidRegister
             // Admin service 
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IFAQsService, FAQsService>();
-            // SMS service
-            services.AddTransient<ISMSService, SMSService>();
             // configur login path
             services.ConfigureApplicationCookie(options =>
             {

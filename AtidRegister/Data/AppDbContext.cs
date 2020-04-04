@@ -31,8 +31,17 @@ namespace AtidRegister.Data
         /// Content Types
         /// </summary>
         public DbSet<ContentType> ContentTypes { get; set; }
+        /// <summary>
+        /// Contents time strips
+        /// </summary>
         public DbSet<TimeStrip> TimeStrips { get; set; }
+        /// <summary>
+        /// Classes
+        /// </summary>
         public DbSet<Class> Classes { get; set; }
+        /// <summary>
+        /// Grades
+        /// </summary>
         public DbSet<Grade> Grades { get; set; }
         /// <summary>
         /// FAQs Store
@@ -46,11 +55,7 @@ namespace AtidRegister.Data
         {
             // who needs ctor?
             // - Everyone!
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            // optionsBuilder.EnableSensitiveDataLogging();
+            // HAHA bad joke
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

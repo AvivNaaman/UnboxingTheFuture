@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace AtidRegister.Areas.Admin.Models
 {
+    /// <summary>
+    /// Basic user creation ViewModel
+    /// </summary>
     public class CreateUserViewModel
     {
         /// <summary>

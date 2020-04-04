@@ -52,6 +52,10 @@ namespace AtidRegister.Services
         /// <param name="password"></param>
         /// <returns></returns>
         public Task CreateAdminAsync(string userName, string password, string email);
+        /// <summary>
+        /// Returns the admins list
+        /// </summary>
+        /// <returns></returns>
         public Task<List<AppUser>> GetAdminsAsync();
 
         /// <summary>

@@ -12,22 +12,100 @@ namespace AtidRegister.Services.Conference
 {
     public interface IContentsService
     {
-        public Task<int> AddContentAsync(string title, string description, IEnumerable<Person> people, ContentType type, string imageFile, int timeStripId);
+        /// <summary>
+        /// Adds a content
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="description"></param>
+        /// <param name="people"></param>
+        /// <param name="type"></param>
+        /// <param name="image">base64 image</param>
+        /// <param name="timeStripId"></param>
+        /// <returns></returns>
+        public Task<int> AddContentAsync(string title, string description, IEnumerable<Person> people, ContentType type, string image, int timeStripId);
+        /// <summary>
+        /// Removes a content by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
         public Task RemoveContentAsync(int id);
+        /// <summary>
+        /// Returns all the contents
+        /// </summary>
         public Task<List<Content>> GetContentsAsync();
+        /// <summary>
+        /// updates a content 
+        /// </summary>
+        /// <param name="updatedContent">the updates content</param>
+        /// <param name="people">the new people should be assigned to it</param>
         public Task UpdateContentAsync(Content updatedContent, List<Person> people);
+        /// <summary>
+        /// Returns a content by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
         public Task<Content> FindContentByIdAsync(int id);
+        /// <summary>
+        /// Returns a content type by it's PK
+        /// </summary>
+        /// <param name="typeId">the PK</param>
+        /// <returns></returns>
         public Task<ContentType> FindContentTypeByIdAsync(int typeId);
+        /// <summary>
+        /// Returns all the content types
+        /// </summary>
+        /// <returns></returns>
         public Task<List<ContentType>> GetContentTypesAsync();
+        /// <summary>
+        /// updates a content type (name)
+        /// </summary>
+        /// <param name="id">the content type PK</param>
+        /// <param name="name">the content type new name</param>
+        /// <returns></returns>
         public Task UpdateContentTypeAsync(int id, string name);
+        /// <summary>
+        /// Removes a content types by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
         public Task RemoveContentTypeAsync(int id);
+        /// <summary>
+        /// Adds a content type by it's name and returns it's id
+        /// </summary>
+        /// <param name="name">the name</param>
+        /// <returns>the new content type id</returns>
         public Task<int> AddContentTypeAsync(string name);
-
+        /// <summary>
+        /// add a time strip by it's start and end
+        /// </summary>
+        /// <param name="start">the start hour</param>
+        /// <param name="end">the end hour</param>
+        /// <returns></returns>
         public Task AddTimeStripAsync(TimeSpan start, TimeSpan end);
+        /// <summary>
+        /// removes a time strip by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
+        /// <returns></returns>
         public Task RemoveTimeStripAsync(int id);
+        /// <summary>
+        /// updates a time strip
+        /// </summary>
+        /// <param name="timeStrip">the time strip to update</param>
+        /// <returns></returns>
         public Task UpdateTimeStripAsync(TimeStrip timeStrip);
+        /// <summary>
+        /// returns time strip by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
+        /// <returns></returns>
         public Task<TimeStrip> FindTimeStripByIdAsync(int id);
+        /// <summary>
+        /// returns all the time strips
+        /// </summary>
+        /// <returns></returns>
         public Task<List<TimeStrip>> GetTimeStripsAsync();
+        /// <summary>
+        /// returns whether a time strip is valid by the start and end given
+        /// </summary>
+        /// <returns></returns>
         public Task<bool> CheckTimeStripAsync(TimeSpan start, TimeSpan end);
     }
     public class ContentsService : IContentsService

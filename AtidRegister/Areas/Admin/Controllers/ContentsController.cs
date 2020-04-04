@@ -14,7 +14,11 @@ using Microsoft.Extensions.Options;
 
 namespace AtidRegister.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Contents controller
+    /// </summary>
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ContentsController : Controller
     {
         #region constants

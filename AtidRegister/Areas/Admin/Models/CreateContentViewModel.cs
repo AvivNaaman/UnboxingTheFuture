@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace AtidRegister.Areas.Admin.Models
 {
+    /// <summary>
+    /// Content creation VM
+    /// </summary>
     public class CreateContentViewModel
     {
         /// <summary>

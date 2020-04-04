@@ -38,8 +38,10 @@ namespace AtidRegister.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 int id = Int32.MaxValue;
+                // if model has image, handle it:
                 if (model.PersonImage != null)
                 {
+                    // scale & encode to base64
                     string img = await ImageService.GetJpegBase64String(model.PersonImage);
                     if (!String.IsNullOrEmpty(img))
                         id = await _svc.AddAsync(model.FullName, model.JobTitle, img);
@@ -49,6 +51,7 @@ namespace AtidRegister.Areas.Admin.Controllers
                         return View(model);
                     }
                 }
+                // put default images
                 else
                 {
                     id = await _svc.AddAsync(model.FullName, model.JobTitle, defaultBase64profile);
@@ -77,6 +80,7 @@ namespace AtidRegister.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // again, if new image scale, encode & add
                 bool isNewImage = model.PersonImage != null;
                 var person = await _svc.FindByIdAsync(model.Id);
                 person.FullName = model.FullName;

@@ -12,14 +12,57 @@ namespace AtidRegister.Services.Conference
 {
     public interface IPeopleService
     {
-
+        /// <summary>
+        /// Adds a person to content
+        /// </summary>
+        /// <param name="personId">the person PK</param>
+        /// <param name="contentId">the content PK</param>
+        /// <returns></returns>
         public Task AddPersonToContentAsync(int personId, int contentId);
-        public Task<int> AddPersonAsync(string name, string jobTitle);
+        /// <summary>
+        /// Adds a person by it's name & job title
+        /// </summary>
+        /// <param name="name">the person's name</param>
+        /// <param name="jobTitle">it's job title</param>
+        /// <returns></returns>
+        public Task<int> AddAsync(string name, string jobTitle);
+        /// <summary>
+        /// adds a person by it's job title, name & image
+        /// </summary>
+        /// <param name="name">the person's name</param>
+        /// <param name="jobTitle">the person's job title</param>
+        /// <param name="imageFile">the person's image, base64</param>
+        /// <returns></returns>
         public Task<int> AddAsync(string name, string jobTitle, string imageFile);
+        /// <summary>
+        /// Removes a person by it's PK
+        /// </summary>
+        /// <param name="id">the PK</param>
+        /// <returns></returns>
         public Task RemoveAsync(int id);
+        /// <summary>
+        /// Returns all the people
+        /// </summary>
+        /// <returns></returns>
         public Task<List<Person>> GetAsync();
+        /// <summary>
+        /// updates a person 
+        /// </summary>
+        /// <param name="updatedPerson">the updates person</param>
+        /// <returns></returns>
         public Task UpdateAsync(Person updatedPerson);
+        /// <summary>
+        /// returns a person by it's PK
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task<Person> FindByIdAsync(int id);
+        /// <summary>
+        /// Returns whehther the person is in the content
+        /// </summary>
+        /// <param name="person">the person</param>
+        /// <param name="content">the content</param>
+        /// <returns></returns>
         public Task<bool> IsInContentAsync(Person person, Content content);
     }
     public class PeopleService : IPeopleService
@@ -32,7 +75,7 @@ namespace AtidRegister.Services.Conference
             _config = config.Value;
             _ctx = ctx;
         }
-        public async Task<int> AddPersonAsync(string name, string jobTitle)
+        public async Task<int> AddAsync(string name, string jobTitle)
         {
             return await AddAsync(name, jobTitle, _config.DefaultPersonImage);
         }

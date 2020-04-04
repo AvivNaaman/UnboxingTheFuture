@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtidRegister.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Time strips controller (just basic read/write)
+    /// </summary>
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class TimeController : Controller

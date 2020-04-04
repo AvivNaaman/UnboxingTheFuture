@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AtidRegister.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Users Controller
+    /// </summary>
     [Area("Admin")]
     [Authorize(Roles= "Admin")]
     public class UsersController : Controller
