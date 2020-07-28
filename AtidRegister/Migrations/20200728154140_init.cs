@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AtidRegister.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -260,7 +260,8 @@ namespace AtidRegister.Migrations
                     ImageFile = table.Column<string>(nullable: true),
                     TypeId = table.Column<int>(nullable: false),
                     TimeStripId = table.Column<int>(nullable: false),
-                    IsDoubleTimeStrip = table.Column<bool>(nullable: false),
+                    SchedulingPriority = table.Column<int>(nullable: false),
+                    SpaceLimitation = table.Column<int>(nullable: false),
                     AppUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -318,7 +319,8 @@ namespace AtidRegister.Migrations
                     Id = table.Column<string>(nullable: false),
                     UserId = table.Column<string>(nullable: false),
                     ContentId = table.Column<int>(nullable: false),
-                    Priority = table.Column<int>(nullable: false)
+                    Priority = table.Column<int>(nullable: false),
+                    IsScheduled = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -335,6 +337,32 @@ namespace AtidRegister.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSchedules",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: false),
+                    ContentId = table.Column<int>(nullable: false),
+                    Priority = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSchedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSchedules_Contents_ContentId",
+                        column: x => x.ContentId,
+                        principalTable: "Contents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserSchedules_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -538,6 +566,16 @@ namespace AtidRegister.Migrations
                 name: "IX_Grades_ClassId",
                 table: "Grades",
                 column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSchedules_ContentId",
+                table: "UserSchedules",
+                column: "ContentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSchedules_UserId",
+                table: "UserSchedules",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -565,6 +603,9 @@ namespace AtidRegister.Migrations
 
             migrationBuilder.DropTable(
                 name: "FAQuestions");
+
+            migrationBuilder.DropTable(
+                name: "UserSchedules");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

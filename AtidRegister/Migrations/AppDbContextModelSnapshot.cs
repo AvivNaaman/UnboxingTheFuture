@@ -137,7 +137,10 @@ namespace AtidRegister.Migrations
                     b.Property<string>("ImageFile")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsDoubleTimeStrip")
+                    b.Property<int>("SchedulingPriority")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SpaceLimitation")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("TimeStripId")
@@ -202,6 +205,9 @@ namespace AtidRegister.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ContentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsScheduled")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Priority")
@@ -427,6 +433,30 @@ namespace AtidRegister.Migrations
                     b.ToTable("TimeStrips");
                 });
 
+            modelBuilder.Entity("AtidRegister.Models.UserSchedule", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ContentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Priority")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserSchedules");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -618,6 +648,21 @@ namespace AtidRegister.Migrations
                         .WithMany("Grades")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AtidRegister.Models.UserSchedule", b =>
+                {
+                    b.HasOne("AtidRegister.Models.Content", "Content")
+                        .WithMany("Schedules")
+                        .HasForeignKey("ContentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AtidRegister.Models.AppUser", "User")
+                        .WithMany("Schedules")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
