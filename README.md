@@ -10,4 +10,14 @@ This repo is an official release repo of the "Unboxing the future" conference re
 3. Start using cli using `dotnet run --project AtidRegister` or using VS using F5
 
 ## Features
+[All Images](https://imgur.com/a/C5bFqEN)
 #### Login Page
+![Login Page](https://i.imgur.com/IWr6lNF.png)
+#### Registration Process
+![Registration Page](https://imgur.com/WRAhHsw.png)
+#### Phone Number collection
+![Phone number input form](https://imgur.com/9HaojKJ.png)
+#### Q&A
+![Questions and answers view](https://imgur.com/HstiEkx.png)
+#### Admin Stats panel
+![Admin statistics dashboard](https://imgur.com/1Lcw9zP.png)
