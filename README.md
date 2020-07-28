@@ -11,13 +11,18 @@ This repo is an official release repo of the "Unboxing the future" conference re
 
 ## Features
 [All Images](https://imgur.com/a/C5bFqEN)
-#### Login Page
+### Login Page
+Beautfiul-looking login page, sorted by class and grade for each student.
 ![Login Page](https://i.imgur.com/IWr6lNF.png)
-#### Registration Process
+### Registration Process
+Prioritization of lectures, multiple choice option and minimum selection amount.
 ![Registration Page](https://imgur.com/WRAhHsw.png)
-#### Phone Number collection
+### Phone Number collection
+Collection of phone numbers at the end of the registration process, if not in existence, yet.
 ![Phone number input form](https://imgur.com/9HaojKJ.png)
-#### Q&A
+### Q&A
+Dynamic, Administrator-defined Questions & Answers page.
 ![Questions and answers view](https://imgur.com/HstiEkx.png)
-#### Admin Stats panel
+### Admin panel
+Advanced admin panel, featuring options such as full data export, statistics visualization using Chart.js, Bulk user creation using CSV files, Dynamic Contents, People, Time Strips & Categories Editor, Single user creation (admin/student) and more.. 
 ![Admin statistics dashboard](https://imgur.com/1Lcw9zP.png)
