@@ -47,7 +47,7 @@ namespace AtidRegister.Data
                 Task.WaitAll(userManager.CreateAsync(user, options.DefaultAdminUser.Password));
                 Task.WaitAll(userManager.AddToRoleAsync(user, "Admin"));
             }
-            if (!context.UserRoles.Any(ur => ur.UserId == fu.Id && adminRoleId == ur.RoleId))
+            else if (!context.UserRoles.Any(ur => ur.UserId == fu.Id && adminRoleId == ur.RoleId))
                 Task.WaitAll(userManager.AddToRoleAsync(user, "Admin"));
         }
     }
