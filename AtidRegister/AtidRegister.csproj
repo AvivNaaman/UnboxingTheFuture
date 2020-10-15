@@ -10,7 +10,7 @@
     <Authors>Aviv Naaman</Authors>
     <Description>a Registration website for "Unboxing The Future" conference in Rabin High School, Tel Mond</Description>
     <Copyright>Aviv Naaman</Copyright>
-    <PackageLicenseExpression>GPL 3.0</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT License</PackageLicenseExpression>
     <PackageProjectUrl>github.com/avivnaaman/atidRegister</PackageProjectUrl>
     <RepositoryUrl>github.com/avivnaaman/atidRegister</RepositoryUrl>
     <RepositoryType>Web</RepositoryType>
