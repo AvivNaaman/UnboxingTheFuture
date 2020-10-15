@@ -9,6 +9,15 @@ This repo is an official release repo of the "Unboxing the future" conference re
 2. Change your administrator settings on `appsettings.json`:`AppConfig`:`DefaultAdminUser`
 3. Start using cli using `dotnet run --project AtidRegister` or using VS using F5
 
+## Techonlogies, Tools & Libraries
+* ASP.NET Core MVC
+* EF Core for Data access
+* Chart.js for Admin panel data visualization
+* Bootstrap for Layout, Styling & Components
+* Microsoft ASP.NET Core Identity Provider
+* BuildBundlerMinifier for Assets build & Minifcation
+* Twilio for Bulk SMS Messgaing (Not Complete)
+
 ## Features
 [All Images](https://imgur.com/a/C5bFqEN)
 ### Login Page
